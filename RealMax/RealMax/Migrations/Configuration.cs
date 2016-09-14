@@ -4,7 +4,8 @@ namespace RealMax.Migrations
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
-
+    using RealMax.Models;
+    using System.Collections.Generic;
     internal sealed class Configuration : DbMigrationsConfiguration<RealMax.Models.ApplicationDbContext>
     {
         public Configuration()
@@ -26,6 +27,17 @@ namespace RealMax.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+
+            var realtors = new List<Realtor>
+            {
+                new Realtor { FirstName = "Ryan", LastName = "Sample", Email = "rsample@realmax.com", PhoneNumber = 1234567892},
+                new Realtor { FirstName = "Tony", LastName = "Johnson", Email = "tjohnson@gmail.com", PhoneNumber = 1231457890 },
+                new Realtor { FirstName = "Sarah", LastName = "Sanders", Email = "ssanders@realmax.com", PhoneNumber = 1234561987 },
+                new Realtor { FirstName = "Jessica", LastName = "Gray", Email = "jgray@realmax.com", PhoneNumber = 1234577892 },
+                new Realtor { FirstName = "Sam", LastName = "Hansen", Email = "shansen@realmax.com", PhoneNumber = 1234567432 }
+            };
+            realtors.ForEach(s => context.Realtor.AddOrUpdate(p => p.Email, s));
+            context.SaveChanges();
         }
     }
 }
