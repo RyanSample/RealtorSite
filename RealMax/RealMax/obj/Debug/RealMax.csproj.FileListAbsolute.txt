@@ -162,3 +162,6 @@ C:\Users\Ryan\Source\Repos\RealtorSite\RealMax\RealMax\bin\Microsoft.Owin.Securi
 C:\Users\Ryan\Source\Repos\RealtorSite\RealMax\RealMax\obj\Debug\RealMax.csprojResolveAssemblyReference.cache
 C:\Users\Ryan\Source\Repos\RealtorSite\RealMax\RealMax\obj\Debug\RealMax.dll
 C:\Users\Ryan\Source\Repos\RealtorSite\RealMax\RealMax\obj\Debug\RealMax.pdb
+C:\Users\Ryan\Source\Repos\RealtorSite\RealMax\RealMax\obj\Debug\RealMax.Migrations.Initial_Migrations.resources
+C:\Users\Ryan\Source\Repos\RealtorSite\RealMax\RealMax\obj\Debug\RealMax.csproj.GenerateResource.Cache
+C:\Users\Ryan\Source\Repos\RealtorSite\RealMax\RealMax\obj\Debug\RealMax.Migrations.Initial_Migrations1.resources

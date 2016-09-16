@@ -17,7 +17,7 @@ namespace RealMax.Models
     public class Listing
     {
         [Key]
-        public int ID { get; set; }
+        public int ListID { get; set; }
 
         public string HouseNumber { get; set; }
 
@@ -41,7 +41,7 @@ namespace RealMax.Models
         public int Bath { get; set; }
 
         //Foreign Key
-        public int RealtorId { get; set; }
+        public int RealtorID { get; set; }
 
         public virtual Realtor Realtor { get; set; }
 
@@ -51,7 +51,6 @@ namespace RealMax.Models
         public int SquareFeet { get; set; }
 
         public int LotSize { get; set; }
-
 
     }
 }

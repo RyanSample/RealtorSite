@@ -38,6 +38,14 @@ namespace RealMax.Migrations
             };
             realtors.ForEach(s => context.Realtor.AddOrUpdate(p => p.Email, s));
             context.SaveChanges();
+
+            var listings = new List<Listing>
+            {
+                new Listing {ListID=1, HouseNumber = "227", StreetName = "W Virginia Ave", City = "Peoria", State = "IL", ZipCode = 61604,
+                    Price = 110000, Bed = 3, Bath = 2, SquareFeet = 1230, RealtorID = realtors.Single(s => s.Email == "rsample@realmax.com").ID}
+            };
+            listings.ForEach(s => context.Listing.AddOrUpdate(p => p.ListID, s));
+            context.SaveChanges();
         }
     }
 }
