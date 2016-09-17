@@ -42,7 +42,12 @@ namespace RealMax.Migrations
             var listings = new List<Listing>
             {
                 new Listing {ListID=1, HouseNumber = "227", StreetName = "W Virginia Ave", City = "Peoria", State = "IL", ZipCode = 61604,
-                    Price = 110000, Bed = 3, Bath = 2, SquareFeet = 1230, RealtorID = realtors.Single(s => s.Email == "rsample@realmax.com").ID}
+                    Price = 110000, Bed = 3, Bath = 2, SquareFeet = 1230, RealtorID = realtors.Single(s => s.Email == "rsample@realmax.com").ID},
+                new Listing {ListID=2, HouseNumber = "123", StreetName = "W Grand St", City = "Dunlap", State="IL", ZipCode = 61525,
+                Price = 89000, Bed = 2, Bath = 1, SquareFeet = 995, RealtorID = realtors.Single(s => s.Email == "shansen@realmax.com").ID},
+                new Listing {ListID=3, HouseNumber = "1354", StreetName = "E Jackson St", City = "Peoria Heights", ZipCode = 61616,
+                Price = 95500, Bed = 3, Bath = 1, SquareFeet= 1570, RealtorID = realtors.Single(s => s.Email == "ssanders@realmax.com").ID}
+
             };
             listings.ForEach(s => context.Listing.AddOrUpdate(p => p.ListID, s));
             context.SaveChanges();
