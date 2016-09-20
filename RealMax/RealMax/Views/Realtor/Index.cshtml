@@ -1,0 +1,67 @@
+﻿@model IEnumerable<RealMax.Models.Realtor>
+
+@{
+    ViewBag.Title = "Index";
+}
+@section head {
+    @*<link rel="stylesheet" href="@Url.Content("~/Content/css/searchStyleSheets/searchIndexStyleSheet.css")" type="text/css" />*@
+    @Styles.Render("~Content/css/searchStyleSheets")
+    }
+
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+            @Html.DisplayNameFor(model => model.FirstName)
+
+            @Html.DisplayNameFor(model => model.LastName)
+
+            @Html.DisplayNameFor(model => model.Email)
+
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+
+            @Html.DisplayNameFor(model => model.Bio)
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        int counter = 0;
+        <div class="col-md-4">
+            <div class="thumbnail">
+                <img src="..." alt="..." />
+                <div class="caption">
+                    <h3>
+                        @Html.DisplayFor(modelItem => item.FirstName)
+
+                        @Html.DisplayFor(modelItem => item.LastName)
+                    </h3>
+                    <p>
+                        @Html.DisplayFor(modelItem => item.Email)
+
+                        @Html.DisplayFor(modelItem => item.PhoneNumber)
+                    </p>
+                    <p>
+                        @Html.DisplayFor(modelItem => item.Bio)
+                    </p>
+                </div>
+            </div>
+        </div>
+        @*<td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            </td>*@
+        counter++;
+        if (counter%4 == 0)
+        {
+            @:</div>
+            @:<div class="row">
+        }
+
+    }
+</div>
+
+
