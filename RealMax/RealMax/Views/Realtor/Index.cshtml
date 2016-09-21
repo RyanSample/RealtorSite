@@ -5,7 +5,7 @@
 }
 @section head {
     @*<link rel="stylesheet" href="@Url.Content("~/Content/css/searchStyleSheets/searchIndexStyleSheet.css")" type="text/css" />*@
-    @Styles.Render("~Content/css/searchStyleSheets")
+    @Styles.Render("~/Content/searchStyleSheets");
     }
 
 
@@ -14,16 +14,6 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-
-            @Html.DisplayNameFor(model => model.FirstName)
-
-            @Html.DisplayNameFor(model => model.LastName)
-
-            @Html.DisplayNameFor(model => model.Email)
-
-            @Html.DisplayNameFor(model => model.PhoneNumber)
-
-            @Html.DisplayNameFor(model => model.Bio)
 
 <div class="row">
     @foreach (var item in Model)

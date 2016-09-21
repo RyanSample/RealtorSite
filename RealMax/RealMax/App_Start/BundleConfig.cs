@@ -26,6 +26,10 @@ namespace RealMax
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new StyleBundle("~/Content/searchStyleSheets").Include(
+                      "~/Content/css/searchStyleSheets/searchIndexStyleSheet.css"
+                ));
         }
     }
 }
