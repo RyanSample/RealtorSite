@@ -24,7 +24,7 @@ namespace RealMax.Controllers
             {
                 realtors = realtors.Where(r => r.LastName.Contains(searchString) || r.FirstName.Contains(searchString));
             }
-            return View(db.Realtor.ToList());
+            return View(realtors.ToList());
         }
 
         // GET: Realtor/Details/5
