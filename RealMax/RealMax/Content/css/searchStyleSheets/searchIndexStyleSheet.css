@@ -10,3 +10,10 @@
     padding: 0px;
 }
 
+.noBorder{
+    border-style: none;
+}
+
+a:hover{
+    text-decoration: none;
+}
