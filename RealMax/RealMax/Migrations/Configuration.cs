@@ -12,7 +12,7 @@ namespace RealMax.Migrations
         {
             AutomaticMigrationsEnabled = false;
         }
-        //TODO: create DBSeed
+       
         protected override void Seed(RealMax.Models.ApplicationDbContext context)
         {
             //  This method will be called after migrating to the latest version.

@@ -7,24 +7,17 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Realtor</h4>
+
+</div>
+@{ 
+    //TODO: add picture like in the index then move on to creating the listings
+}
+<div>
+    <h4>@Html.DisplayFor(model => model.FirstName)
+        @Html.DisplayFor(model => model.LastName)
+    </h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.Email)
@@ -42,9 +35,20 @@
             @Html.DisplayFor(model => model.PhoneNumber)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Bio)
-        </dt>
+        
+            @{ 
+                string bio = Model.Bio;
+                if(bio != ""){
+                    @:<dt>
+                    Html.DisplayNameFor(model => model.Bio);
+                    @:</dt>
+                    @:<dd>
+                    Html.DisplayFor(model => model.Bio);
+                    @:</dd>
+                }
+            }
+            
+        
 
         <dd>
             @Html.DisplayFor(model => model.Bio)
@@ -53,6 +57,5 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
+
 </p>
