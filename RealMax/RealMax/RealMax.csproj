@@ -197,6 +197,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ListingController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RealtorController.cs" />
     <Compile Include="Global.asax.cs">
@@ -286,6 +287,11 @@
     <Content Include="Views\Realtor\Details.cshtml" />
     <Content Include="Views\Realtor\Edit.cshtml" />
     <Content Include="Views\Realtor\Index.cshtml" />
+    <Content Include="Views\Listing\Create.cshtml" />
+    <Content Include="Views\Listing\Delete.cshtml" />
+    <Content Include="Views\Listing\Details.cshtml" />
+    <Content Include="Views\Listing\Edit.cshtml" />
+    <Content Include="Views\Listing\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
