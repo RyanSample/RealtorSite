@@ -3,103 +3,69 @@
 @{
     ViewBag.Title = "Index";
 }
+@section head{
+    @Styles.Render("~/Content/searchStyleSheets")
+    }
 
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Realtor.FirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.HouseNumber)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.StreetName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ApartmentNumber)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.City)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.State)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ZipCode)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Price)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Bed)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Bath)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ExtraFeatures)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SquareFeet)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LotSize)
-        </th>
-        <th></th>
-    </tr>
+<div class="row">
+    <form class="navbar-form navbar-left" role="search" method="get" action="@Url.Action("Index", "Listing")">
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search" name="id">
+        </div>
+        <button type="submit" value="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+    </form>
+</div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Realtor.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HouseNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StreetName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ApartmentNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.City)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.State)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ZipCode)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Price)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Bed)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Bath)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ExtraFeatures)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SquareFeet)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LotSize)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ListID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ListID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ListID })
-        </td>
-    </tr>
+
+
+@foreach (var item in Model)
+{
+    <div class="col-md-4">
+        <div class="thumbnail">
+            <a href="@Url.Action("Details", "Realtor", new { id = item.ListID })">
+                <img src="..." />
+
+                <div class="caption">
+
+                    @Html.DisplayFor(modelItem => item.Realtor.FirstName)
+
+                    @Html.DisplayFor(modelItem => item.HouseNumber)
+
+                    @Html.DisplayFor(modelItem => item.StreetName)
+
+                    @Html.DisplayFor(modelItem => item.ApartmentNumber)
+
+                    @Html.DisplayFor(modelItem => item.City)
+
+                    @Html.DisplayFor(modelItem => item.State)
+
+                    @Html.DisplayFor(modelItem => item.ZipCode)
+
+                    @Html.DisplayFor(modelItem => item.Price)
+
+                    @Html.DisplayFor(modelItem => item.Bed)
+
+                    @Html.DisplayFor(modelItem => item.Bath)
+
+                    @Html.DisplayFor(modelItem => item.ExtraFeatures)
+
+                    @Html.DisplayFor(modelItem => item.SquareFeet)
+
+                    @Html.DisplayFor(modelItem => item.LotSize)
+                </div>
+                @*<td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.ListID }) |
+                @Html.ActionLink("Details", "Details", new { id=item.ListID }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.ListID })
+            </td>*@
+            </a>
+        </div>
+    </div>
 }
+<div class="row">
+    <br />
+</div>
 
-</table>
+

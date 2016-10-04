@@ -41,7 +41,7 @@ namespace RealMax.Controllers
                 //db.Listing.Include(l => l.Realtor);
             return View(listing.ToList());
         }
-
+        
         // GET: Listing/Details/5
         public ActionResult Details(int? id)
         {
