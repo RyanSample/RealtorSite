@@ -31,7 +31,7 @@ namespace RealMax.Models
 
         public int ZipCode { get; set; }
 
-        [DataType(DataType.Currency)]
+        [DisplayFormat(DataFormatString = "{0:C0}")]
         public int Price { get; set; }
 
         [Display(Name = "Bedrooms")]

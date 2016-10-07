@@ -28,30 +28,20 @@
                 <img src="..." />
 
                 <div class="caption">
+                    <h3>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </h3>
+                    <h4>
+                        @Html.DisplayFor(modelItem => item.HouseNumber)
+                        @Html.DisplayFor(modelItem => item.StreetName)
+                        @Html.DisplayFor(modelItem => item.ApartmentNumber)
+                    </h4>
 
-                    @Html.DisplayFor(modelItem => item.Realtor.FirstName)
-
-                    @Html.DisplayFor(modelItem => item.HouseNumber)
-
-                    @Html.DisplayFor(modelItem => item.StreetName)
-
-                    @Html.DisplayFor(modelItem => item.ApartmentNumber)
-
-                    @Html.DisplayFor(modelItem => item.City)
-
-                    @Html.DisplayFor(modelItem => item.State)
-
-                    @Html.DisplayFor(modelItem => item.ZipCode)
-
-                    @Html.DisplayFor(modelItem => item.Price)
-
+                    <p>
                     @Html.DisplayFor(modelItem => item.Bed)
-
-                    @Html.DisplayFor(modelItem => item.Bath)
-
-                    @Html.DisplayFor(modelItem => item.ExtraFeatures)
-
-                    @Html.DisplayFor(modelItem => item.SquareFeet)
+                    | @Html.DisplayFor(modelItem => item.Bath)
+                    | @Html.DisplayFor(modelItem => item.SquareFeet)
+                    </p>
 
                     @Html.DisplayFor(modelItem => item.LotSize)
                 </div>
