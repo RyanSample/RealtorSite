@@ -7,116 +7,60 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Listing</h4>
+    <img src="~/Content/Images/Listing/NoImage.jpg"/>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Realtor.FirstName)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Realtor.FirstName)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.HouseNumber)
-        </dt>
+    <h3>
+        @Html.DisplayFor(model => model.HouseNumber)
 
-        <dd>
-            @Html.DisplayFor(model => model.HouseNumber)
-        </dd>
+        @Html.DisplayFor(model => model.StreetName).
 
-        <dt>
-            @Html.DisplayNameFor(model => model.StreetName)
-        </dt>
+        @Html.DisplayFor(model => model.ApartmentNumber)
 
-        <dd>
-            @Html.DisplayFor(model => model.StreetName)
-        </dd>
+        @Html.DisplayFor(model => model.City),
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ApartmentNumber)
-        </dt>
+        @Html.DisplayFor(model => model.State)
 
-        <dd>
-            @Html.DisplayFor(model => model.ApartmentNumber)
-        </dd>
+        @Html.DisplayFor(model => model.ZipCode)
 
-        <dt>
-            @Html.DisplayNameFor(model => model.City)
-        </dt>
+    </h3>
+    <h4>
+        @Html.DisplayFor(model => model.Price)
+    </h4>
+    <p>
+        @Html.DisplayNameFor(model => model.Bed)
 
-        <dd>
-            @Html.DisplayFor(model => model.City)
-        </dd>
+        @Html.DisplayFor(model => model.Bed),
 
-        <dt>
-            @Html.DisplayNameFor(model => model.State)
-        </dt>
+        @Html.DisplayNameFor(model => model.Bath)
 
-        <dd>
-            @Html.DisplayFor(model => model.State)
-        </dd>
+        @Html.DisplayFor(model => model.Bath)
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ZipCode)
-        </dt>
+        @Html.DisplayNameFor(model => model.SquareFeet)
 
-        <dd>
-            @Html.DisplayFor(model => model.ZipCode)
-        </dd>
+        @Html.DisplayFor(model => model.SquareFeet)
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
+        @Html.DisplayNameFor(model => model.LotSize)
 
-        <dd>
-            @Html.DisplayFor(model => model.Price)
-        </dd>
+        @Html.DisplayFor(model => model.LotSize)
+    </p>
+    <p>
+        @Html.DisplayNameFor(model => model.ExtraFeatures):
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Bed)
-        </dt>
+        @Html.DisplayFor(model => model.ExtraFeatures)
+    </p>
 
-        <dd>
-            @Html.DisplayFor(model => model.Bed)
-        </dd>
+            @{ 
+                var realtorId = Model.Realtor.ID;
+                string realtorFullName = Model.Realtor.FirstName + " " + Model.Realtor.LastName;
+            }
+            Contact: 
+            @Html.ActionLink(realtorFullName, "Details", "Realtor", new {id = Model.RealtorID}, null)
+            
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Bath)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Bath)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ExtraFeatures)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ExtraFeatures)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.SquareFeet)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.SquareFeet)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LotSize)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LotSize)
-        </dd>
-
-    </dl>
 </div>
+<p></p>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ListID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to Listings", "Index")
 </p>
