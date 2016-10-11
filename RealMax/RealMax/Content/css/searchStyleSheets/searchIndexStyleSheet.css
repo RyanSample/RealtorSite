@@ -17,3 +17,8 @@
 a:hover{
     text-decoration: none;
 }
+
+.img-center{
+    display: block;
+    margin: 0 auto;
+}

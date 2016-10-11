@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -21,7 +22,7 @@ namespace RealMax.Controllers
             string searchString = id;
 
             var listing = from l in db.Listing select l;
-            //TODO: check this search method make sure it works
+
             if (!String.IsNullOrEmpty(searchString))
             {
                 string[] searchStringArray = searchString.Split();
@@ -35,6 +36,7 @@ namespace RealMax.Controllers
                     l.Realtor.LastName.Contains(word)
                     );
                 }
+                //ViewBag.Images = Directory.EnumerateFiles(Server.MapPath("~/Content/Images/"))
 
 
             }
