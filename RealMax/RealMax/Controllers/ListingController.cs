@@ -56,6 +56,18 @@ namespace RealMax.Controllers
             {
                 return HttpNotFound();
             }
+
+            //find and return all images in directory Content/Images/Listing/*id*
+            string imagesPathName = "~/Content/Images/Listing/" + id +"/";
+            try
+            {
+                ViewBag.Images = Directory.EnumerateFiles(Server.MapPath(imagesPathName)).Select(fn => imagesPathName + Path.GetFileName(fn));
+            }
+            catch (System.IO.DirectoryNotFoundException)
+            {
+                ViewBag.Images = VirtualPathUtility.ToAbsolute("~/Content/Images/Listing/NoImage.jpg");
+            }
+
             return View(listing);
         }
 
