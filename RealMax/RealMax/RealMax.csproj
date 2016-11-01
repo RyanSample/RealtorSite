@@ -224,6 +224,7 @@
     <Content Include="Content\bootstrap-simplex.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\listing\detailsStyleSheet.css" />
     <Content Include="Content\css\searchStyleSheets\searchIndexStyleSheet.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
