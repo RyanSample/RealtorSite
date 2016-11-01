@@ -18,12 +18,20 @@
             @{int counter = 0;
               string activeImage = "active";}  
         <div class="carousel-inner" role="listbox">
-            @foreach(var image in (IEnumerable<string>)ViewBag.Images){
-                
+            @if (ViewBag.Images != null) {
+                foreach (var image in (IEnumerable<string>)ViewBag.Images) {
+
+                    <div class="item @activeImage">
+                        <img src="@Url.Content(image)" class="img-center img-responsive" />
+                    </div>
+                    activeImage = "";
+                    counter++;
+                }
+            }else
+            {
                 <div class="item @activeImage">
-                    <img src="@Url.Content(image)" class="img-center img-responsive" />
+                    <img src="@Url.Content("~/Content/Images/Listing/NoImage.jpg")" class="img-center img-responsive" />
                 </div>
-                activeImage = "";
                 counter++;
             }
 

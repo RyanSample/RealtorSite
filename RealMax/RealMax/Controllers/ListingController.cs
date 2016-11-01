@@ -65,7 +65,7 @@ namespace RealMax.Controllers
             }
             catch (System.IO.DirectoryNotFoundException)
             {
-                ViewBag.Images = VirtualPathUtility.ToAbsolute("~/Content/Images/Listing/NoImage.jpg");
+                ViewBag.Images = null;
             }
 
             return View(listing);
