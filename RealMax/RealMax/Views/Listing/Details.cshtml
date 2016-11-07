@@ -9,8 +9,7 @@
 @section head{
     <link href="@Url.Content("~/Content/css/listing/detailsStyleSheet.css")" rel="stylesheet" type= "text/css" />
 }
-
-<h2>Details</h2>
+<br />
 
 <div>
     <div id="Carousel" class="carousel slide">
@@ -24,8 +23,8 @@
             @if (ViewBag.Images != null) {
                 foreach (var image in (IEnumerable<string>)ViewBag.Images) {
 
-                    <div class="item @activeImage">
-                        <img src="@Url.Content(image)" class="img-center img-responsive" />
+                    <div class="item @activeImage">                      
+                        <img src="@Url.Content(image)" class="img-center img-responsive" />                        
                     </div>
                     activeImage = "";
                     counter++;

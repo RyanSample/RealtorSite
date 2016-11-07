@@ -3,4 +3,13 @@
 
 .carousel-inner > .item > img {
     margin: 0 auto;
+    max-width: 300px;
+    max-height: 300px;
+
 }
+
+.carousel{
+    max-width: 500px;
+    margin: 0 auto;
+}
+

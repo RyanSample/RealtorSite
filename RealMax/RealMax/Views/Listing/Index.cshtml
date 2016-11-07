@@ -1,13 +1,15 @@
 ﻿@model IEnumerable<RealMax.Models.Listing>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Listings";
 }
 @section head{
     @Styles.Render("~/Content/searchStyleSheets")
     }
+@{ 
+    //container body-content has left margin that takes up nearly 1/4 of the left side of the page. in order to place a filter we need to override and hope the style doesnt look bad.
+}
 
-<h2>Index</h2>
 
 <div class="row">
     <form class="navbar-form navbar-left" role="search" method="get" action="@Url.Action("Index", "Listing")">
@@ -22,7 +24,7 @@
 
 @foreach (var item in Model)
 {
-    <div class="col-md-4">
+    <div class="col-md-4 listing-item">
         <div class="thumbnail">
             <a href="@Url.Action("Details", "Listing", new { id = item.ListID })">
                 @{
