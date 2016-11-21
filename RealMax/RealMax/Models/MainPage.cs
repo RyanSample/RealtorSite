@@ -9,7 +9,7 @@ namespace RealMax.Models
 {
     public class MainPage
     {
-        public Listing Listings { get; set; }
-        public Realtor Realtors { get; set; }
+        public IEnumerable<Listing> Listings { get; set; }
+        public IEnumerable<Realtor> Realtors { get; set; }
     }
 }

@@ -22,3 +22,8 @@ a:hover{
     display: block;
     margin: 0 auto;
 }
+
+.full-height{
+    background-color: black;
+
+}

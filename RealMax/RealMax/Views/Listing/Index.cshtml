@@ -11,59 +11,69 @@
     //container body-content has left margin that takes up nearly 1/4 of the left side of the page. in order to place a filter we need to override and hope the style doesnt look bad.
 }
 
-
-<div class="row">
-    <form class="navbar-form navbar-left" role="search" method="get" action="@Url.Action("Index", "Listing")">
-        <div class="form-group">
-            <input type="text" class="form-control" placeholder="Search" name="id">
-        </div>
-        <button type="submit" value="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-    </form>
-</div>
-
-
-
-@foreach (var item in Model)
-{
-    <div class="col-md-4 listing-item">
-        <div class="thumbnail">
-            <a href="@Url.Action("Details", "Listing", new { id = item.ListID })">
-                @{
-                    string source = "~/Content/Images/Listing/" + item.ListID.ToString();
-
-                }
-                <img src="@Url.Content(source) " alt="..." class="img-responsive img-center" onerror="this.onerror = null; this.src='@Url.Content("~/Content/Images/Listing/NoImage.jpg")';"/>
-
-                <div class="caption">
-                    <h3 class="text-center">
-                        @Html.DisplayFor(modelItem => item.Price)
-                    </h3>
-                    <h4 class="text-center">
-                        @Html.DisplayFor(modelItem => item.HouseNumber)
-                        @Html.DisplayFor(modelItem => item.StreetName)
-                        @Html.DisplayFor(modelItem => item.ApartmentNumber)
-                    </h4>
-
-                    <p class="text-center">
-                    @Html.DisplayFor(modelItem => item.Bed)
-                   BD | @Html.DisplayFor(modelItem => item.Bath)
-                   BA | @Html.DisplayFor(modelItem => item.SquareFeet) 
-                        Sq. Ft.
-                    </p>
-
-                    @*@Html.DisplayFor(modelItem => item.LotSize)*@
+<div class="container-fluid">    
+    <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="col-md-2 col-sm-2 col-lg-2 full-height">
+                    sidebar
                 </div>
-                @*<td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.ListID }) |
-                @Html.ActionLink("Details", "Details", new { id=item.ListID }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.ListID })
-            </td>*@
-            </a>
-        </div>
+                <div class="col-sm-9 col-md-9 col-lg-9">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <form class="navbar-form navbar-left" role="search" method="get" action="@Url.Action("Index", "Listing")">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Search" name="id">
+                                </div>
+                                <button type="submit" value="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="row">
+                        @foreach (var item in Model)
+                        {
+                            <div class="col-md-3 listing-item">
+                                <div class="thumbnail">
+                                    <a href="@Url.Action("Details", "Listing", new { id = item.ListID })">
+                                        @{
+                                    string source = "~/Content/Images/Listing/" + item.ListID.ToString();
+
+                                        }
+                                        <img src="@Url.Content(source) " alt="..." class="img-responsive img-center" onerror="this.onerror = null; this.src='@Url.Content("~/Content/Images/Listing/NoImage.jpg")';" />
+
+                                        <div class="caption">
+                                            <h3 class="text-center">
+                                                @Html.DisplayFor(modelItem => item.Price)
+                                            </h3>
+                                            <h4 class="text-center">
+                                                @Html.DisplayFor(modelItem => item.HouseNumber)
+                                                @Html.DisplayFor(modelItem => item.StreetName)
+                                                @Html.DisplayFor(modelItem => item.ApartmentNumber)
+                                            </h4>
+
+                                            <p class="text-center">
+                                                @Html.DisplayFor(modelItem => item.Bed)
+                                                BD | @Html.DisplayFor(modelItem => item.Bath)
+                                                BA | @Html.DisplayFor(modelItem => item.SquareFeet)
+                                                Sq. Ft.
+                                            </p>
+
+                                            @*@Html.DisplayFor(modelItem => item.LotSize)*@
+                                        </div>
+                                        @*<td>
+                                        @Html.ActionLink("Edit", "Edit", new { id=item.ListID }) |
+                                        @Html.ActionLink("Details", "Details", new { id=item.ListID }) |
+                                        @Html.ActionLink("Delete", "Delete", new { id=item.ListID })
+                                    </td>*@
+                                    </a>
+                                </div>
+                            </div>
+                                            }
+                    </div>
+
+                </div>
+                <div class="row">
+                    <br />
+                </div>
+            </div>
     </div>
-}
-<div class="row">
-    <br />
 </div>
-
-
