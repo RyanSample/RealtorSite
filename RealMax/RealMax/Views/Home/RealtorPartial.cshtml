@@ -1,0 +1,16 @@
+﻿@model IEnumerable<RealMax.Models.Realtor>
+
+@{ 
+    int counter = 0;
+}
+
+@foreach(var item in Model)
+{
+    if (counter >= 3)
+    {
+        break;
+    }
+    counter++;
+    <p>test</p>
+    @Html.DisplayFor(model => item.FirstName)
+}

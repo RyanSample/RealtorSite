@@ -4,12 +4,13 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using RealMax.Models;
+using System.Collections;
 
 namespace RealMax.Controllers
 {
     public class HomeController : Controller
     {
-        
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         public ActionResult Index()
         {
@@ -28,6 +29,13 @@ namespace RealMax.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        public PartialViewResult RealtorPartial()
+        {
+            var realtorModel = from r in db.Realtor select r;
+
+            return PartialView("RealtorPartial", realtorModel.ToList());
         }
     }
 }

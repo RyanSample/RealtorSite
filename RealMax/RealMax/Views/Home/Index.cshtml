@@ -1,16 +1,19 @@
 ﻿
-@{
+@{    
     ViewBag.Title = "Home Page";
 }
 
 
 <div class="row">
     <div class="col-md-12 text-center">        
-        <h3>listings</h3>
+        <h3>our top realtors</h3>
         @*@foreach (var item in Model)
         {
             @Html.DisplayFor(modelItem => item.Realtors.FirstName)
             @Html.DisplayFor(modelItem => item.Listings.City)
         }*@
+        @{
+            Html.RenderAction("RealtorPartial");
+        }
     </div>
 </div>

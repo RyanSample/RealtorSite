@@ -294,6 +294,7 @@
     <Content Include="Views\Listing\Details.cshtml" />
     <Content Include="Views\Listing\Edit.cshtml" />
     <Content Include="Views\Listing\Index.cshtml" />
+    <Content Include="Views\Home\RealtorPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
