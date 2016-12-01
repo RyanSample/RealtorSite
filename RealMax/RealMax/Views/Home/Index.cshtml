@@ -3,17 +3,35 @@
     ViewBag.Title = "Home Page";
 }
 
+@section head{
+    @Styles.Render("~/Content/searchStyleSheets")
+}
 
-<div class="row">
-    <div class="col-md-12 text-center">        
-        <h3>our top realtors</h3>
-        @*@foreach (var item in Model)
-        {
-            @Html.DisplayFor(modelItem => item.Realtors.FirstName)
-            @Html.DisplayFor(modelItem => item.Listings.City)
-        }*@
-        @{
-            Html.RenderAction("RealtorPartial");
-        }
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 text-center">
+
+            @*@foreach (var item in Model)
+                {
+                    @Html.DisplayFor(modelItem => item.Realtors.FirstName)
+                    @Html.DisplayFor(modelItem => item.Listings.City)
+                }*@
+            <div class="row">
+                @{
+                    Html.RenderAction("ListingPartial");
+                }
+                <h3><a href="@Url.Action("Index", "Listing")" style="color: inherit; text-decoration: none;">Check out our other listings!</a></h3>
+            </div>
+            <hr />
+            <div class="row">
+                <h3>Realtors of the month</h3>
+                @{
+                    Html.RenderAction("RealtorPartial");
+                }
+                <h3><a href="@Url.Action("Index", "Realtor")" style="color: inherit; text-decoration: none;">Meet the rest of our winning team!</a></h3>
+            </div>
+
+
+        </div>
     </div>
 </div>

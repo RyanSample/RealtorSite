@@ -37,5 +37,12 @@ namespace RealMax.Controllers
 
             return PartialView("RealtorPartial", realtorModel.ToList());
         }
+
+        public PartialViewResult ListingPartial()
+        {
+            var listingModel = from l in db.Listing select l;
+
+            return PartialView("ListingPartial", listingModel.ToList());
+        }
     }
 }

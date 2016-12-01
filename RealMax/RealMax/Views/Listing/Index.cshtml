@@ -33,7 +33,7 @@
                                 <div class="thumbnail">
                                     <a href="@Url.Action("Details", "Listing", new { id = item.ListID })">
                                         @{
-                                    string source = "~/Content/Images/Listing/" + item.ListID.ToString();
+                                    string source = "~/Content/Images/Listing/" + item.ListID.ToString() + "/thumbnail.jpg";
 
                                         }
                                         <img src="@Url.Content(source) " alt="..." class="img-responsive img-center" onerror="this.onerror = null; this.src='@Url.Content("~/Content/Images/Listing/NoImage.jpg")';" />
