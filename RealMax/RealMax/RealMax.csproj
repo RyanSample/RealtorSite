@@ -225,6 +225,7 @@
     <Content Include="Content\bootstrap-simplex.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\home\main.css" />
     <Content Include="Content\css\listing\detailsStyleSheet.css" />
     <Content Include="Content\css\searchStyleSheets\searchIndexStyleSheet.css" />
     <Content Include="favicon.ico" />
@@ -299,7 +300,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Images\Listing\10\" />
     <Folder Include="Content\Images\Listing\1\" />
+    <Folder Include="Content\Images\Listing\6\" />
+    <Folder Include="Content\Images\Listing\7\" />
+    <Folder Include="Content\Images\Listing\8\" />
+    <Folder Include="Content\Images\Listing\9\" />
     <Folder Include="Content\Images\Realtor\" />
   </ItemGroup>
   <ItemGroup>

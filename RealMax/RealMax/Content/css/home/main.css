@@ -1,0 +1,28 @@
+﻿.col-md-4{
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.thumbnail{
+    width: 100%;
+    height: 100%;
+    padding: 0px;
+}
+
+.noBorder{
+    border-style: none;
+}
+
+a:hover{
+    text-decoration: none;
+}
+
+.img-center{
+    display: block;
+    margin: 0 auto;
+}
+
+.img-min-height{
+    min-height: 300px;
+    height: 300px;
+   
+}
