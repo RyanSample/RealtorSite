@@ -47,7 +47,10 @@
                                                 @Html.DisplayFor(modelItem => item.StreetName)
                                                 @Html.DisplayFor(modelItem => item.ApartmentNumber)
                                             </h4>
-
+                                            <p class="text-center">
+                                                @Html.DisplayFor(modelItem => item.City),
+                                                @Html.DisplayFor(modelItem => item.State)
+                                            </p>
                                             <p class="text-center">
                                                 @Html.DisplayFor(modelItem => item.Bed)
                                                 BD | @Html.DisplayFor(modelItem => item.Bath)
@@ -75,3 +78,6 @@
             </div>
     </div>
 </div>
+@section scripts{
+    <script type="text/javascript" src="@Url.Content("/Scripts/StandardizeHeight.js")"></script>
+}

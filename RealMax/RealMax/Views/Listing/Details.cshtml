@@ -36,7 +36,7 @@
                         <div class="item @activeImage">
                             <img src="@Url.Content(image)" class="img-center img-responsive" />
                         </div>
-                        
+
                         counter++;
                     }
                 }
@@ -75,63 +75,73 @@
         </div>
         <hr />
 
+        <div class="col-lg-4 col-md-4 col-sm-4 col-lg-offset-4 col-md-offset-4 col-sm-offset-4">
+            <h3>
+                @Html.DisplayFor(model => model.HouseNumber)
 
-        <h3>
-            @Html.DisplayFor(model => model.HouseNumber)
+                @Html.DisplayFor(model => model.StreetName).
 
-            @Html.DisplayFor(model => model.StreetName).
+                @Html.DisplayFor(model => model.ApartmentNumber)
 
-            @Html.DisplayFor(model => model.ApartmentNumber)
+                @Html.DisplayFor(model => model.City),
 
-            @Html.DisplayFor(model => model.City),
+                @Html.DisplayFor(model => model.State)
 
-            @Html.DisplayFor(model => model.State)
+                @Html.DisplayFor(model => model.ZipCode)
 
-            @Html.DisplayFor(model => model.ZipCode)
+            </h3>
+            <h4>
+                @Html.DisplayFor(model => model.Price)
+            </h4>
+            <p>
+                @Html.DisplayNameFor(model => model.Bed)
 
-        </h3>
-        <h4>
-            @Html.DisplayFor(model => model.Price)
-        </h4>
-        <p>
-            @Html.DisplayNameFor(model => model.Bed)
+                @Html.DisplayFor(model => model.Bed),
 
-            @Html.DisplayFor(model => model.Bed),
+                @Html.DisplayNameFor(model => model.Bath)
 
-            @Html.DisplayNameFor(model => model.Bath)
+                @Html.DisplayFor(model => model.Bath),
 
-            @Html.DisplayFor(model => model.Bath)
+                @Html.DisplayNameFor(model => model.SquareFeet)
 
-            @Html.DisplayNameFor(model => model.SquareFeet)
+                @Html.DisplayFor(model => model.SquareFeet)
 
-            @Html.DisplayFor(model => model.SquareFeet)
-
-            @Html.DisplayNameFor(model => model.LotSize)
-
-            @Html.DisplayFor(model => model.LotSize)
-        </p>
-        <p>
-            @{
-                string extraFeatures = Model.ExtraFeatures;
-                if (!extraFeatures.IsEmpty())
-                {
-                    Html.DisplayNameFor(model => model.ExtraFeatures);
-                    Html.DisplayFor(model => model.ExtraFeatures);
+                @{
+                    if (Model.LotSize > 0)
+                    {
+                        <text>, </text>
+                        @Html.DisplayNameFor(model => model.LotSize)
+                        <text> </text>
+                        @Html.DisplayFor(model => model.LotSize)
+                    }
+                    Html.DisplayNameFor(model => model.LotSize);
                 }
+
+
+            </p>
+            <p>
+                @{
+                    string extraFeatures = Model.ExtraFeatures;
+                    if (!extraFeatures.IsEmpty())
+                    {
+                        @Html.DisplayNameFor(model => model.ExtraFeatures)
+                        @Html.DisplayFor(model => model.ExtraFeatures)
+                    }
+                }
+            </p>
+
+            @{
+                var realtorId = Model.Realtor.ID;
+                string realtorFullName = Model.Realtor.FirstName + " " + Model.Realtor.LastName;
             }
-        </p>
+            Contact:
+            @Html.ActionLink(realtorFullName, "Details", "Realtor", new { id = Model.RealtorID }, null)
 
-        @{
-            var realtorId = Model.Realtor.ID;
-            string realtorFullName = Model.Realtor.FirstName + " " + Model.Realtor.LastName;
-        }
-        Contact:
-        @Html.ActionLink(realtorFullName, "Details", "Realtor", new { id = Model.RealtorID }, null)
-
-
+            <p></p>
+            <p>
+                @Html.ActionLink("Back to Listings", "Index")
+            </p>
+        </div>
+       
     </div>
-    <p></p>
-    <p>
-        @Html.ActionLink("Back to Listings", "Index")
-    </p>
 </div>
