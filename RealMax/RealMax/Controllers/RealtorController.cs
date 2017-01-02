@@ -45,6 +45,9 @@ namespace RealMax.Controllers
         //The following actions that have been commented out are left behind for later when some sort of user roles will be implemented
 
         // GET: Realtor/Create
+        //TODO: https://docs.microsoft.com/en-us/azure/app-service-web/web-sites-dotnet-deploy-aspnet-mvc-app-membership-oauth-sql-database
+        //most likely to work for adding roles:
+        //https://code.msdn.microsoft.com/ASPNET-MVC-5-Security-And-44cbdb97
         [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
