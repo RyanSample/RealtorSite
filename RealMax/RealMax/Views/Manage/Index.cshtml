@@ -83,6 +83,15 @@
                         }
                     }*@
             </dd>
+            @if (User.IsInRole("Admin"))
+            {
+                <dt>
+                    Manage User Rolls:
+                </dt>
+                <dd>
+                    <a href="@Url.Action("ManageUserRolls")">View and change user rolls</a>
+                </dd>
+            }
         </dl>
     </div>
 </div>

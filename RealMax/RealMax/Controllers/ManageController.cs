@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using RealMax.Models;
+using System.Collections.Generic;
 
 namespace RealMax.Controllers
 {
@@ -320,6 +321,21 @@ namespace RealMax.Controllers
             }
             var result = await UserManager.AddLoginAsync(User.Identity.GetUserId(), loginInfo.Login);
             return result.Succeeded ? RedirectToAction("ManageLogins") : RedirectToAction("ManageLogins", new { Message = ManageMessageId.Error });
+        }
+
+
+        //Get: /Manage/MangeUserRolls
+        [Authorize(Roles ="Admin")]
+        public ActionResult ManageUserRolls(string id)
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            var users = from u in db.Users select u;
+
+            ApplicationUser[] userArray = users.ToArray();
+            //userArray[0].
+            //ViewBag.userList = users.ToList();
+
+            return View(users.ToList());
         }
 
         protected override void Dispose(bool disposing)

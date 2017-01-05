@@ -158,7 +158,7 @@ namespace RealMax.Controllers
             return View();
         }
 
-        //TODO: fucking check this out: http://stackoverflow.com/questions/20841262/adding-a-role-for-user-after-registration-in-mvc-5
+        //TODO: check this out: http://stackoverflow.com/questions/20841262/adding-a-role-for-user-after-registration-in-mvc-5
         //
         // POST: /Account/Register
         [HttpPost]
