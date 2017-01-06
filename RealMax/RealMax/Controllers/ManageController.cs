@@ -8,6 +8,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using RealMax.Models;
 using System.Collections.Generic;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace RealMax.Controllers
 {
@@ -331,11 +332,26 @@ namespace RealMax.Controllers
             ApplicationDbContext db = new ApplicationDbContext();
             var users = from u in db.Users select u;
 
-            ApplicationUser[] userArray = users.ToArray();
-            //userArray[0].
+            //ApplicationUser[] userArray = users.ToArray();
+            //userArray[0].Roles.
+            
             //ViewBag.userList = users.ToList();
 
             return View(users.ToList());
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public async Task AddOrRemoveUserFromRole(string id, FormCollection form)
+        {
+            var UserManager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+
+            var username = (string)form.GetValue("userName").AttemptedValue;
+            var user = await UserManager.FindByNameAsync(username);
+            
+            IdentityResult deletionResult = await UserManager.AddToRoleAsync(user.Id, "Admin");
+
+            //return ManageUserRolls(null);
         }
 
         protected override void Dispose(bool disposing)

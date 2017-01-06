@@ -14,7 +14,8 @@
         </tr>
     @foreach (var user in Model)
     {
-        <tr>
+
+            <tr>
             <td>
                 @Html.DisplayFor(modelItem => user.UserName)
             </td>
@@ -25,10 +26,53 @@
 
                 @foreach (var role in user.Roles)
                 {
-                    @role.RoleId.ToString()
+                    switch (role.RoleId.ToString())
+                    {
+                        case "8ca40b62-030e-4eb6-90c9-bdaa8eb6d584":
+                            @:Admin
+                            break;
+                        case "283c90f4-8505-4275-b960-dde3969a51e5":
+                            @:Realtor
+                            break;
+                        default:
+                            @:None
+                            break;
+
+                    }
+
                 }
             </td>
+            @*<td>
+                <input type="checkbox" name="remove_Admin" /><label>Remove admin</label>
+                <input type="checkbox" name="remove_Realtor" /><label>Remove realtor</label>
+            </td>
+            <td>
+                <input type="checkbox" name="add_Admin" /><label>Add to admin</label>
+                <input type="checkbox" name="add_Realtor" /><label>Add to realtor</label>
+            </td>
+            <td>
+                <input type="button" name="submit" value="submit" />
+            </td>*@
+
+
+
         </tr>
     }
     </table>
+    @using (Html.BeginForm("AddOrRemoveUserFromRole", "Manage"))
+    {
+        <p>Username:</p>@Html.TextBox("userName")
+        @Html.CheckBox("remove_Admin")
+        @Html.Label("Remove Admin")
+        @Html.CheckBox("remove_Realtor")
+        @Html.Label("Remove Realtor")
+        @Html.CheckBox("add_Admin")
+        @Html.Label("Add to Admin")
+        @Html.CheckBox("add_Realtor")
+        @Html.Label("Add to Realtor")
+
+       <input type="submit" name="submit" value="submit" />
+    }
+   
+ 
 </div>
