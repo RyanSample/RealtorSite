@@ -342,16 +342,45 @@ namespace RealMax.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Admin")]
-        public async Task AddOrRemoveUserFromRole(string id, FormCollection form)
+        public async Task<ActionResult> AddOrRemoveUserFromRole(string id, FormCollection form)
         {
-            var UserManager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            //var UserManager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
 
             var username = (string)form.GetValue("userName").AttemptedValue;
             var user = await UserManager.FindByNameAsync(username);
-            
-            IdentityResult deletionResult = await UserManager.AddToRoleAsync(user.Id, "Admin");
+            string[] addAdmin = form.GetValues("add_Admin"),
+                addRealtor = form.GetValues("add_Realtor"),
+                removeAdmin = form.GetValues("remove_Admin"),
+                removeRealtor = form.GetValues("remove_Realtor");
+            if(user != null)
+            {
 
-            //return ManageUserRolls(null);
+                if (addAdmin[0] == "true")
+                    await AddUserToRole(user.Id, "Admin");
+
+                if (addRealtor[0] == "true")
+                    await AddUserToRole(user.Id, "Realtor");
+
+                if (removeAdmin[0] == "true")
+                    await RemoveUserFromRole(user.Id, "Admin");
+
+                if (removeRealtor[0] == "true")
+                    await RemoveUserFromRole(user.Id, "Realtor");
+            }
+
+           // IdentityResult deletionResult = await UserManager.AddToRoleAsync(user.Id, "Admin");
+
+            return RedirectToAction("ManageUserRolls");//ManageUserRolls(null);
+        }
+
+        public async Task RemoveUserFromRole(string userID, string roleName)
+        {
+            await UserManager.RemoveFromRoleAsync(userID, roleName);
+        }
+
+        public async Task AddUserToRole(string userID, string roleName)
+        {
+            await UserManager.AddToRoleAsync(userID, roleName);
         }
 
         protected override void Dispose(bool disposing)
