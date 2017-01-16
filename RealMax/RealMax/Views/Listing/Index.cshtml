@@ -11,8 +11,73 @@
 <div class="container-fluid">    
     <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12">
-                <div class="col-md-2 col-sm-2 col-lg-2 full-height">
-                    sidebar
+                <div class="col-md-2 col-sm-2 col-lg-2">
+                    @*@using (Ajax.BeginForm("ArtistSearch", "Home",
+                            new AjaxOptions
+                            {
+                                InsertionMode = InsertionMode.Replace,
+                                HttpMethod = "GET",
+                                OnFailure = "searchFailed",
+                                LoadingElementId = "ajax-loader",
+                                UpdateTargetId = "searchresults",
+                            }))
+                    {
+
+                    }*@
+                    <hr />
+                    @{
+                        var city = Model.GroupBy(x => x.City).Select(y => y.First()).OrderBy(z => z.City);
+                        var bed = Model.GroupBy(x => x.Bed).Select(y => y.First()).OrderBy(z => z.Bed);
+                        var bath = Model.GroupBy(x => x.Bath).Select(y => y.First()).OrderBy(z => z.Bath);
+
+                        <b>City:</b>
+                        <br />
+                        <br />
+                        foreach (var item in city)
+                        {
+                            <p>
+                                @Html.DisplayFor(distinctCity => item.City)
+                            </p>
+                            
+                        }
+                        <hr />
+                        <b>Price Range:</b>
+                        <br />
+                        <p>
+                            $40k - 75k
+                        </p>
+                        <p>
+                            $75k - 95k
+                        </p>
+                        <p>
+                            $95k - 130k
+                        </p>
+                        <p>
+                            $130k - 200k
+                        </p>
+
+                        <hr />
+
+                        <b>Bed:</b>
+                        <br />
+                        foreach (var item in bed)
+                        {
+                            <p>
+                                @Html.DisplayFor(distinctBed => item.Bed)
+                            </p>
+                        }
+
+                        <hr />
+                        <b>Bath:</b>
+                        <br />
+                        foreach (var item in bath)
+                        {
+                            <p>
+                                @Html.DisplayFor(distinctBed => item.Bath)
+                            </p>
+                        }
+
+                    }
                 </div>
                 <div class="col-sm-9 col-md-9 col-lg-9">
                     <div class="row">

@@ -345,7 +345,7 @@ namespace RealMax.Controllers
         public async Task<ActionResult> AddOrRemoveUserFromRole(string id, FormCollection form)
         {
             //var UserManager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-
+            //Come back to this some time and rework it with a proper model
             var username = (string)form.GetValue("userName").AttemptedValue;
             var user = await UserManager.FindByNameAsync(username);
             string[] addAdmin = form.GetValues("add_Admin"),

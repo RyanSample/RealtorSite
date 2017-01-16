@@ -15,6 +15,13 @@ namespace RealMax.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        //specifies a price range for housing 
+        enum group1 : int { min = 40, max = 75};
+        enum group2 : int { min = 75, max = 95};
+        enum group3 : int { min = 95, max = 130 };
+        enum group4 : int { min = 130, max = 200 };
+
+
         // GET: Listing
         //divide up search string by whitespace and determine if any words match any fields in the listing
         public ActionResult Index(string id)
