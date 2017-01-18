@@ -43,12 +43,21 @@ namespace RealMax.Controllers
                     l.Realtor.LastName.Contains(word)
                     );
                 }
-                //ViewBag.Images = Directory.EnumerateFiles(Server.MapPath("~/Content/Images/"))
-
-
             }
-                //db.Listing.Include(l => l.Realtor);
+
             return View(listing.ToList());
+        }
+
+        public ActionResult FilterSearchResults(string city, int? priceRange, int? bed, int? bath)
+        {
+            var listing = from l in db.Listing select l;
+
+            if (!String.IsNullOrEmpty(city)) {
+                listing = listing.Where(
+                    l => l.City.Contains(city));
+            }
+            int? price = priceRange;
+            return PartialView("ListingIndex", listing.ToList());
         }
         
         // GET: Listing/Details/5

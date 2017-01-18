@@ -228,6 +228,7 @@
     <Content Include="Content\css\home\main.css" />
     <Content Include="Content\css\listing\detailsStyleSheet.css" />
     <Content Include="Content\css\searchStyleSheets\searchIndexStyleSheet.css" />
+    <Content Include="Content\Images\Loading_icon.gif" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -301,6 +302,7 @@
     <Content Include="Views\Home\RealtorPartial.cshtml" />
     <Content Include="Views\Home\ListingPartial.cshtml" />
     <Content Include="Views\Manage\ManageUserRolls.cshtml" />
+    <Content Include="Views\Listing\ListingIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
