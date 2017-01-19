@@ -56,7 +56,52 @@ namespace RealMax.Controllers
                 listing = listing.Where(
                     l => l.City.Contains(city));
             }
-            int? price = priceRange;
+
+            if(priceRange != null && priceRange >= 0)
+            {
+                //TODO: Fix price range
+                int max, min;
+
+                switch (priceRange)
+                {
+                    case 0:
+                        max = (int)group1.max;
+                        min = (int)group1.min;
+                        break;
+                    case 1:
+                        max = (int)group2.max;
+                        min = (int)group2.min;
+                        break;
+                    case 2:
+                        max = (int)group3.max;
+                        min = (int)group3.min;
+                        break;
+                    case 3:
+                        max = (int)group4.max;
+                        min = (int)group4.min;
+                        break;
+                    default:
+                        min = (int)group1.min;
+                        max = (int)group2.max;
+                        break;
+                }
+                max = max * 1000;
+                min = min * 1000;
+                listing = listing.Where(
+                    p => p.Price > min && p.Price <= max).OrderBy(p => p.Price);
+            }
+
+            if(bed != null && bed > 0)
+            {
+                listing = listing.Where(
+                    l => l.Bed == bed);
+            }
+
+            if(bath != null && bath > 0)
+            {
+                listing = listing.Where(
+                    l => l.Bath == bath);
+            }
             return PartialView("ListingIndex", listing.ToList());
         }
         

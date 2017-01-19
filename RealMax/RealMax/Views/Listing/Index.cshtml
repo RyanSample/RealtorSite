@@ -29,6 +29,10 @@
                         <b>City:</b>
                         <br />
                         <br />
+                        <p>
+                            @Html.RadioButton("City", "")
+                            @Html.Label("Any")
+                        </p>                        
                         foreach (var item in city)
                         {
                             <p>
@@ -37,10 +41,14 @@
                             </p>
 
                         }
+
                         <hr />
                         <b>Price Range:</b>
                         <br />
-                        
+                        <p>
+                            @Html.RadioButton("priceRange", -1)
+                            @Html.Label("Any")
+                        </p>
                         <p>
                             @Html.RadioButton("priceRange", 0)
                             @Html.Label("$40k - 75k")    
@@ -62,6 +70,10 @@
 
                         <b>Bed:</b>
                         <br />
+                        <p>
+                            @Html.RadioButton("bed", -1)
+                            @Html.Label("Any")
+                        </p>
                         foreach (var item in bed)
                         {
                             <p>
@@ -73,6 +85,10 @@
                         <hr />
                         <b>Bath:</b>
                         <br />
+                        <p>
+                            @Html.RadioButton("bath", -1)
+                            @Html.Label("Any")
+                        </p>
                         foreach (var item in bath)
                         {
                             <p>
@@ -82,7 +98,8 @@
                         }
                         <hr />
                         <input type="submit" value="Filter" />
-                        <img id="ajax-loader" src="@Url.Content("~/Images/Loading_icon.gif")" style="display:none" />
+
+
                     }
                     
                     @{
@@ -102,6 +119,7 @@
                             </form>
                         </div>
                     </div>
+                    <img id="ajax-loader" class="img-center img-responsive" src="@Url.Content("~/Content/Images/Loading_icon.gif")" style="display:none" />
                     <div id="SearchResultsContainer">
                         @Html.Partial("ListingIndex", Model)
                     </div>

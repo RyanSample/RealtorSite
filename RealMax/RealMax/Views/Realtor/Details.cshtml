@@ -4,63 +4,33 @@
     ViewBag.Title = "Details";
 }
 <div class="container">
-<h2>Details</h2>
+    <br />
 
-<div>
-    @{ 
-        string source = "~/Content/Images/Realtor/" + Model.ID;
-    }
-    <img src="@Url.Content(source) " alt="..." onerror="this.onerror = null; this.src='@Url.Content("~/Content/Images/Realtor/NoImage.jpg")';"/>
-
-</div>
-@{ 
-    //TODO: add picture like in the index then move on to creating the listings
-}
-<div>
-    <h4>@Html.DisplayFor(model => model.FirstName)
-        @Html.DisplayFor(model => model.LastName)
-    </h4>
-    <hr />
-    <dl class="dl-horizontal">
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PhoneNumber)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PhoneNumber)
-        </dd>
-
-        
-            @{ 
-                string bio = Model.Bio;
-                if(bio != ""){
-                    @:<dt>
-                    Html.DisplayNameFor(model => model.Bio);
-                    @:</dt>
-                    @:<dd>
-                    Html.DisplayFor(model => model.Bio);
-                    @:</dd>
-                }
+    <div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-lg-offset-4 col-md-offset-4 col-sm-offset-4">
+            @{
+                string source = "~/Content/Images/Realtor/" + Model.ID;
             }
-            
-        
+            <img class="img-center" src="@Url.Content(source) " alt="..." onerror="this.onerror = null; this.src='@Url.Content("~/Content/Images/Realtor/NoImage.jpg")';" />
 
-        <dd>
-            @Html.DisplayFor(model => model.Bio)
-        </dd>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-lg-offset-4 col-md-offset-4 col-sm-offset-4">
+            <h3 >
+                @Html.DisplayFor(model => model.FirstName)
+                @Html.DisplayFor(model => model.LastName)
+            </h3>
+            <h4>
+                <b>@Html.DisplayNameFor(model => model.Email)</b>
+                @Html.DisplayFor(model => model.Email)
+            </h4>
+            <h4>
+                <b>@Html.DisplayNameFor(model => model.PhoneNumber)</b>
+                @Html.DisplayFor(model => model.PhoneNumber)
+            </h4>
+            <p>
+                @Html.ActionLink("Back to Realtors", "Index")
+            </p>
+        </div>
+    </div>
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Back", "Index")
-</p>
 </div>
