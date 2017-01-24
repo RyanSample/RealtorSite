@@ -50,7 +50,7 @@ namespace RealMax.Models
         [Display(Name = "Sq. Feet")]
         public int SquareFeet { get; set; }
 
-        public int LotSize { get; set; }
+        public int? LotSize { get; set; }
 
     }
 }

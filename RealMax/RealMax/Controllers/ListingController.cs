@@ -59,7 +59,7 @@ namespace RealMax.Controllers
 
             if(priceRange != null && priceRange >= 0)
             {
-                //TODO: Fix price range
+                
                 int max, min;
 
                 switch (priceRange)
@@ -147,12 +147,16 @@ namespace RealMax.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin,Realtor")]
-        public ActionResult Create([Bind(Include = "ListID,HouseNumber,StreetName,ApartmentNumber,City,State,ZipCode,Price,Bed,Bath,RealtorID,ExtraFeatures,SquareFeet,LotSize")] Listing listing)
+        public ActionResult Create([Bind(Include = "ListID,HouseNumber,StreetName,ApartmentNumber,City,State,ZipCode,Price,Bed,Bath,RealtorID,ExtraFeatures,SquareFeet,LotSize")] Listing listing, HttpPostedFileBase pictureUpload)
         {
+            //TODO: http://haacked.com/archive/2010/07/16/uploading-files-with-aspnetmvc.aspx/ also look up using multiple for input type of file
+            string fileType = pictureUpload.ContentType;
+
             if (ModelState.IsValid)
             {
-                db.Listing.Add(listing);
-                db.SaveChanges();
+                //Dont want to make any changes in db until testing is finished
+                //db.Listing.Add(listing);
+                //db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
