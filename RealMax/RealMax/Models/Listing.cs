@@ -19,14 +19,18 @@ namespace RealMax.Models
         [Key]
         public int ListID { get; set; }
 
+        [Required]
         public string HouseNumber { get; set; }
 
+        [Required]
         public string StreetName { get; set; }
 
         public string ApartmentNumber { get; set; }
 
+        [Required]
         public string City { get; set; }
 
+        [Required]
         public string State { get; set; }
 
         public int ZipCode { get; set; }

@@ -211,6 +211,14 @@
     <Compile Include="Migrations\201609152142330_Initial_Migrations1.Designer.cs">
       <DependentUpon>201609152142330_Initial_Migrations1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701252124239_secondMigration.cs" />
+    <Compile Include="Migrations\201701252124239_secondMigration.Designer.cs">
+      <DependentUpon>201701252124239_secondMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701252223162_secondMigration1.cs" />
+    <Compile Include="Migrations\201701252223162_secondMigration1.Designer.cs">
+      <DependentUpon>201701252223162_secondMigration1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -328,6 +336,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609152142330_Initial_Migrations1.resx">
       <DependentUpon>201609152142330_Initial_Migrations1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701252124239_secondMigration.resx">
+      <DependentUpon>201701252124239_secondMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701252223162_secondMigration1.resx">
+      <DependentUpon>201701252223162_secondMigration1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

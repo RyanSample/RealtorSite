@@ -149,14 +149,37 @@ namespace RealMax.Controllers
         [Authorize(Roles = "Admin,Realtor")]
         public ActionResult Create([Bind(Include = "ListID,HouseNumber,StreetName,ApartmentNumber,City,State,ZipCode,Price,Bed,Bath,RealtorID,ExtraFeatures,SquareFeet,LotSize")] Listing listing, HttpPostedFileBase pictureUpload)
         {
-            //TODO: http://haacked.com/archive/2010/07/16/uploading-files-with-aspnetmvc.aspx/ also look up using multiple for input type of file
-            string fileType = pictureUpload.ContentType;
+            //TODO: http://haacked.com/archive/2010/07/16/uploading-files-with-aspnetmvc.aspx/ also look up using multiple for input type of file http://stackoverflow.com/questions/3853767/maximum-request-length-exceeded <- for max file length problems
 
             if (ModelState.IsValid)
             {
+                var directoryPath = Path.Combine("~/Content/Images/Listing", listing.ListID.ToString());
+
                 //Dont want to make any changes in db until testing is finished
                 //db.Listing.Add(listing);
                 //db.SaveChanges();
+
+                if (pictureUpload != null)
+                {
+                    var fileExtension = Path.GetExtension(pictureUpload.FileName);
+                    var fileName = "thumbnail" + fileExtension;
+                    var fullPath = Path.Combine(directoryPath, fileName);
+
+                    if (!Directory.Exists(Server.MapPath(directoryPath)))
+                        Directory.CreateDirectory(Server.MapPath(directoryPath));
+
+                    pictureUpload.SaveAs(Server.MapPath(fullPath));
+                }
+                else
+                {
+                    //create directory for images to be added to later
+                    if (!Directory.Exists(Server.MapPath(directoryPath)))
+                    {
+                        Directory.CreateDirectory(Server.MapPath(directoryPath));
+                    }
+
+                }
+
                 return RedirectToAction("Index");
             }
 

@@ -165,3 +165,5 @@ C:\Users\Ryan\Source\Repos\RealtorSite\RealMax\RealMax\obj\Debug\RealMax.pdb
 C:\Users\Ryan\Source\Repos\RealtorSite\RealMax\RealMax\obj\Debug\RealMax.Migrations.Initial_Migrations.resources
 C:\Users\Ryan\Source\Repos\RealtorSite\RealMax\RealMax\obj\Debug\RealMax.csproj.GenerateResource.Cache
 C:\Users\Ryan\Source\Repos\RealtorSite\RealMax\RealMax\obj\Debug\RealMax.Migrations.Initial_Migrations1.resources
+C:\Users\Ryan\Source\Repos\RealtorSite\RealMax\RealMax\obj\Debug\RealMax.Migrations.secondMigration.resources
+C:\Users\Ryan\Source\Repos\RealtorSite\RealMax\RealMax\obj\Debug\RealMax.Migrations.secondMigration1.resources
