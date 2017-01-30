@@ -86,6 +86,29 @@
             @if (User.IsInRole("Admin"))
             {
                 <dt>
+                    Add or remove a Realtor
+                </dt>
+                <dd>
+                    <a href="@Url.Action("Create","Realtor")">Add a realtor</a>
+                    <br />
+                    <a href="@Url.Action("Remove","Realtor")">Remove a realtor</a>
+                </dd>
+
+            }
+            @if(User.IsInRole("Admin") || User.IsInRole("Realtor"))
+            {
+                <dt>
+                    Add or remove a Listing
+                </dt>
+                <dd>
+                    <a href="@Url.Action("Create", "Listing")">Add a new Listing</a>
+                    <br />
+                    <a href="@Url.Action("Remove","Listing")">Remove a Listing</a>
+                </dd>
+            }
+            @if (User.IsInRole("Admin"))
+            {
+                <dt>
                     Manage User Rolls:
                 </dt>
                 <dd>

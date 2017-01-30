@@ -106,6 +106,12 @@ namespace RealMax.Controllers
             return View(realtor);
         }
 
+        public ActionResult Remove()
+        {
+            var realtors = from r in db.Realtor select r;
+            return View(realtors.ToList());
+        }
+
         // GET: Realtor/Delete/5
         [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)

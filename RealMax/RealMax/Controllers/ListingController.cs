@@ -222,6 +222,14 @@ namespace RealMax.Controllers
             return View(listing);
         }
 
+        [Authorize(Roles = "Admin,Realtor")]
+        public ActionResult Remove()
+        {
+            var listings = from l in db.Listing select l;
+
+            return View(listings.ToList());
+        }
+
         // GET: Listing/Delete/5
         [Authorize(Roles = "Admin,Realtor")]
         public ActionResult Delete(int? id)
