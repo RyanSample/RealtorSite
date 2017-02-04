@@ -153,34 +153,36 @@ namespace RealMax.Controllers
 
             if (ModelState.IsValid)
             {
-                var directoryPath = Path.Combine("~/Content/Images/Listing", listing.ListID.ToString());
+                
 
                 //Dont want to make any changes in db until testing is finished
-                //db.Listing.Add(listing);
-                //db.SaveChanges();
+                var listin = db.Listing.Add(listing);
+                db.SaveChanges();
 
-                if (pictureUpload != null)
-                {
-                    var fileExtension = Path.GetExtension(pictureUpload.FileName);
-                    var fileName = "thumbnail" + fileExtension;
-                    var fullPath = Path.Combine(directoryPath, fileName);
+				int id = listing.ListID;
+				var directoryPath = Path.Combine("~/Content/Images/Listing", id.ToString());
+				if (pictureUpload != null)
+				{
+					var fileExtension = Path.GetExtension(pictureUpload.FileName);
+					var fileName = "thumbnail" + fileExtension;
+					var fullPath = Path.Combine(directoryPath, fileName);
 
-                    if (!Directory.Exists(Server.MapPath(directoryPath)))
-                        Directory.CreateDirectory(Server.MapPath(directoryPath));
+					if (!Directory.Exists(Server.MapPath(directoryPath)))
+						Directory.CreateDirectory(Server.MapPath(directoryPath));
 
-                    pictureUpload.SaveAs(Server.MapPath(fullPath));
-                }
-                else
-                {
-                    //create directory for images to be added to later
-                    if (!Directory.Exists(Server.MapPath(directoryPath)))
-                    {
-                        Directory.CreateDirectory(Server.MapPath(directoryPath));
-                    }
+					pictureUpload.SaveAs(Server.MapPath(fullPath));
+				}
+				else
+				{
+					//create directory for images to be added to later
+					if (!Directory.Exists(Server.MapPath(directoryPath)))
+					{
+						Directory.CreateDirectory(Server.MapPath(directoryPath));
+					}
 
-                }
+				}
 
-                return RedirectToAction("Index");
+				return RedirectToAction("Index");
             }
 
             ViewBag.RealtorID = new SelectList(db.Realtor, "ID", "FirstName", listing.RealtorID);
@@ -255,7 +257,18 @@ namespace RealMax.Controllers
             Listing listing = db.Listing.Find(id);
             db.Listing.Remove(listing);
             db.SaveChanges();
-            return RedirectToAction("Index");
+			try
+			{
+				var directoryPath = Path.Combine("~/Content/Images/Listing", listing.ListID.ToString());
+				//delete the folder associated with this model.
+				Directory.Delete(Server.MapPath(directoryPath), true);
+			}
+			catch (Exception /*e*/)
+			{
+
+				return View("Error");
+			}
+			return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)
