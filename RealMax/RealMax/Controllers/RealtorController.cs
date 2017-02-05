@@ -7,18 +7,26 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using RealMax.Models;
+using System.IO;
 
 namespace RealMax.Controllers
 {
     public class RealtorController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private ApplicationDbContext _db = new ApplicationDbContext();
+		//private IQueryable<Realtor> _realtorDbList;
+
+		//because we cant use a linq expression as an optional value we will pass and test for null
+		public RealtorController(/*IQueryable<Realtor> realtorDbList = null*/)
+		{
+
+		}
 
         // GET: Realtor
         public ViewResult Index(string id)
         {
             string searchString = id;
-            var realtors = from r in db.Realtor select r;
+            var realtors = from r in _db.Realtor select r;
 
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -34,7 +42,7 @@ namespace RealMax.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Realtor realtor = db.Realtor.Find(id);
+            Realtor realtor = _db.Realtor.Find(id);
             if (realtor == null)
             {
                 return HttpNotFound();
@@ -60,13 +68,38 @@ namespace RealMax.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public ActionResult Create([Bind(Include = "ID,FirstName,LastName,Email,PhoneNumber,Bio")] Realtor realtor)
+        public ActionResult Create([Bind(Include = "ID,FirstName,LastName,Email,PhoneNumber,Bio")] Realtor realtor, HttpPostedFileBase profilePic)
         {
             if (ModelState.IsValid)
             {
-                db.Realtor.Add(realtor);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                _db.Realtor.Add(realtor);
+                _db.SaveChanges();
+
+				int id = realtor.ID;
+				var directoryPath = Path.Combine("~/Content/Images/Realtor", id.ToString());
+
+				if (profilePic != null)
+				{
+					var fileExtension = Path.GetExtension(profilePic.FileName);
+					var fileName = "thumbnail" + fileExtension;
+					var fullPath = Path.Combine(directoryPath, fileName);
+
+					if (!Directory.Exists(Server.MapPath(directoryPath)))
+						Directory.CreateDirectory(Server.MapPath(directoryPath));
+
+					profilePic.SaveAs(Server.MapPath(fullPath));
+
+				}
+				else
+				{
+					//create directory for images to be added to later
+					if (!Directory.Exists(Server.MapPath(directoryPath)))
+					{
+						Directory.CreateDirectory(Server.MapPath(directoryPath));
+					}
+
+				}
+				return RedirectToAction("Index");
             }
 
             return View(realtor);
@@ -80,7 +113,7 @@ namespace RealMax.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Realtor realtor = db.Realtor.Find(id);
+            Realtor realtor = _db.Realtor.Find(id);
             if (realtor == null)
             {
                 return HttpNotFound();
@@ -99,8 +132,8 @@ namespace RealMax.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(realtor).State = EntityState.Modified;
-                db.SaveChanges();
+                _db.Entry(realtor).State = EntityState.Modified;
+                _db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(realtor);
@@ -108,7 +141,7 @@ namespace RealMax.Controllers
 
         public ActionResult Remove()
         {
-            var realtors = from r in db.Realtor select r;
+            var realtors = from r in _db.Realtor select r;
             return View(realtors.ToList());
         }
 
@@ -120,7 +153,7 @@ namespace RealMax.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Realtor realtor = db.Realtor.Find(id);
+            Realtor realtor = _db.Realtor.Find(id);
             if (realtor == null)
             {
                 return HttpNotFound();
@@ -134,9 +167,9 @@ namespace RealMax.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
-            Realtor realtor = db.Realtor.Find(id);
-            db.Realtor.Remove(realtor);
-            db.SaveChanges();
+            Realtor realtor = _db.Realtor.Find(id);
+            _db.Realtor.Remove(realtor);
+            _db.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -144,7 +177,7 @@ namespace RealMax.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _db.Dispose();
             }
             base.Dispose(disposing);
         }

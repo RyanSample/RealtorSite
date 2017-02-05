@@ -9,11 +9,6 @@
     }
 
 <div class="container">
-    <h2>Index</h2>
-
-    @*<p>
-            @Html.ActionLink("Create New", "Create")
-        </p>*@
     <div class="row">
         <form class="navbar-form navbar-left" role="search" method="get" action="@Url.Action("Index", "Realtor")">
             <div class="form-group">
@@ -28,10 +23,10 @@
         <div class="col-md-4">
             <div class="thumbnail">
                 <a href="@Url.Action("Details", "Realtor", new { id = item.ID })">
-                    @{string source = "~/Content/Images/Realtor/" + item.ID.ToString();
+                    @{string source = "~/Content/Images/Realtor/" + item.ID.ToString() + "/thumbnail.jpg";
 
                     }
-                    <img src="@Url.Content(source) " alt="..." onerror="this.onerror = null; this.src='@Url.Content("~/Content/Images/Realtor/NoImage.jpg")';" />
+                    <img src="@Url.Content(source) " alt="..." class="img-responsive img-center img-min-height" onerror="this.onerror = null; this.src='@Url.Content("~/Content/Images/Realtor/NoImage.jpg")';" />
                     <div class="caption">
                         <h3>
                             @Html.DisplayFor(modelItem => item.FirstName)
@@ -44,14 +39,7 @@
                     </div>
                 </a>
             </div>
-        </div>
-        @*<td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-                @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-            </td>*@
-
-                        }
+        </div>                        }
     <div class="row"></div> @*added for formating*@
 
 </div>

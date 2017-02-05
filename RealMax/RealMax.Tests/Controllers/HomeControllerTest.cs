@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RealMax;
 using RealMax.Controllers;
+using RealMax.Models;
 
 namespace RealMax.Tests.Controllers
 {
@@ -51,4 +52,19 @@ namespace RealMax.Tests.Controllers
         //    Assert.IsNotNull(result);
         //}
     }
+
+	[TestClass]
+	public class RealtorControllerTest
+	{
+		[TestMethod]
+		public void Index()
+		{
+			//TODO: http://stackoverflow.com/questions/4839459/asp-net-mvc-controller-unit-test-fails
+			RealtorController controller = new RealtorController();
+
+			ViewResult result = controller.Index(null) as ViewResult;
+
+			Assert.IsNotNull(result);
+		}
+	}
 }

@@ -147,7 +147,7 @@ namespace RealMax.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin,Realtor")]
-        public ActionResult Create([Bind(Include = "ListID,HouseNumber,StreetName,ApartmentNumber,City,State,ZipCode,Price,Bed,Bath,RealtorID,ExtraFeatures,SquareFeet,LotSize")] Listing listing, HttpPostedFileBase pictureUpload)
+        public ActionResult Create([Bind(Include = "ListID,HouseNumber,StreetName,ApartmentNumber,City,State,ZipCode,Price,Bed,Bath,RealtorID,ExtraFeatures,SquareFeet,LotSize")] Listing listing, HttpPostedFileBase thumbnailUpload, IEnumerable<HttpPostedFileBase> picsUpload)
         {
             //TODO: http://haacked.com/archive/2010/07/16/uploading-files-with-aspnetmvc.aspx/ also look up using multiple for input type of file http://stackoverflow.com/questions/3853767/maximum-request-length-exceeded <- for max file length problems
 
@@ -156,21 +156,30 @@ namespace RealMax.Controllers
                 
 
                 //Dont want to make any changes in db until testing is finished
-                var listin = db.Listing.Add(listing);
+                db.Listing.Add(listing);
                 db.SaveChanges();
 
 				int id = listing.ListID;
 				var directoryPath = Path.Combine("~/Content/Images/Listing", id.ToString());
-				if (pictureUpload != null)
+				if (thumbnailUpload != null)
 				{
-					var fileExtension = Path.GetExtension(pictureUpload.FileName);
+					var fileExtension = Path.GetExtension(thumbnailUpload.FileName);
 					var fileName = "thumbnail" + fileExtension;
 					var fullPath = Path.Combine(directoryPath, fileName);
 
 					if (!Directory.Exists(Server.MapPath(directoryPath)))
 						Directory.CreateDirectory(Server.MapPath(directoryPath));
 
-					pictureUpload.SaveAs(Server.MapPath(fullPath));
+					thumbnailUpload.SaveAs(Server.MapPath(fullPath));
+
+					foreach(var file in picsUpload)
+					{
+						if(file.ContentLength > 0)
+						{
+							var path = Path.Combine(directoryPath, Path.GetFileName(file.FileName));
+							file.SaveAs(Server.MapPath(path));
+						}
+					}
 				}
 				else
 				{
