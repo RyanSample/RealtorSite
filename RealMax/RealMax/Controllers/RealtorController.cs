@@ -14,19 +14,24 @@ namespace RealMax.Controllers
     public class RealtorController : Controller
     {
         private ApplicationDbContext _db = new ApplicationDbContext();
-		//private IQueryable<Realtor> _realtorDbList;
+		private IQueryable<Realtor> _realtorDbList;
 
-		//because we cant use a linq expression as an optional value we will pass and test for null
-		public RealtorController(/*IQueryable<Realtor> realtorDbList = null*/)
+		public RealtorController()
 		{
+			_realtorDbList = from r in _db.Realtor select r;
 
+		}
+
+		public RealtorController(IQueryable<Realtor> realtorDbList)
+		{
+			_realtorDbList = realtorDbList;
 		}
 
         // GET: Realtor
         public ViewResult Index(string id)
         {
             string searchString = id;
-            var realtors = from r in _db.Realtor select r;
+            var realtors = _realtorDbList /*from r in _db.Realtor select r*/;
 
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -128,14 +133,40 @@ namespace RealMax.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public ActionResult Edit([Bind(Include = "ID,FirstName,LastName,Email,PhoneNumber,Bio")] Realtor realtor)
+        public ActionResult Edit([Bind(Include = "ID,FirstName,LastName,Email,PhoneNumber,Bio")] Realtor realtor, HttpPostedFileBase addOrChangePicture)
         {
-            if (ModelState.IsValid)
-            {
-                _db.Entry(realtor).State = EntityState.Modified;
-                _db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+			if (ModelState.IsValid)
+			{
+				_db.Entry(realtor).State = EntityState.Modified;
+				_db.SaveChanges();
+				if(addOrChangePicture.ContentLength > 0)
+				{
+					//if there is already a picture then we need to remove it and upload the new one as the same name
+					var directoryPath = Path.Combine("~/Content/Images/Realtor", realtor.ID.ToString());
+					string fileName = "thumbnail.jpg";
+					string filePath = Path.Combine(directoryPath, fileName);
+					//check for directory path and create it if it has not already been done(I goofed when i was originaly creating the realtor data and didn't add directories)
+					if (!Directory.Exists(Server.MapPath(directoryPath))){
+						Directory.CreateDirectory(Server.MapPath(directoryPath));
+					}
+					//check for and then delete file
+					if (System.IO.File.Exists(Server.MapPath(filePath)))
+						System.IO.File.Delete(Server.MapPath(filePath));
+
+					try {
+						addOrChangePicture.SaveAs(Server.MapPath(filePath));
+					}
+					catch (Exception /*e*/)
+					{						
+						//Found this while digging through the error view; It doesnt seem like the error view actually uses this model.
+						//System.Web.Mvc.HandleErrorInfo errorMessage = new System.Web.Mvc.HandleErrorInfo(e, "Realtor", "Edit");
+						return View("Error");
+					}
+					
+
+				}
+				return RedirectToAction("Index");
+			}
             return View(realtor);
         }
 

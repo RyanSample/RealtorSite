@@ -89,9 +89,13 @@
                     Add or remove a Realtor
                 </dt>
                 <dd>
-                    <a href="@Url.Action("Create","Realtor")">Add a realtor</a>
-                    <br />
-                    <a href="@Url.Action("Remove","Realtor")">Remove a realtor</a>
+					<span>
+						<a href="@Url.Action("Create","Realtor")" class="btn btn-default">Add a realtor</a>
+
+						<a href="@Url.Action("Remove","Realtor")" class="btn btn-default">Remove a realtor</a>
+
+						<a href="@Url.Action("Edit", "Realtor")" class="btn btn-default">Edit</a>
+					</span>
                 </dd>
 
             }
@@ -101,9 +105,14 @@
                     Add or remove a Listing
                 </dt>
                 <dd>
-                    <a href="@Url.Action("Create", "Listing")">Add a new Listing</a>
-                    <br />
-                    <a href="@Url.Action("Remove","Listing")">Remove a Listing</a>
+					<span>
+						<a href="@Url.Action("Create", "Listing")">Add a new Listing</a>
+						<br />
+						<a href="@Url.Action("Remove","Listing")">Remove a Listing</a>
+					</span>
+					<span>
+						
+					</span>
                 </dd>
             }
             @if (User.IsInRole("Admin"))

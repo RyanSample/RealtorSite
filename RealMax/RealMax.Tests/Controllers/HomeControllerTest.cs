@@ -60,7 +60,9 @@ namespace RealMax.Tests.Controllers
 		public void Index()
 		{
 			//TODO: http://stackoverflow.com/questions/4839459/asp-net-mvc-controller-unit-test-fails
-			RealtorController controller = new RealtorController();
+			var list = new List<Realtor>();
+			var queryableList = list.AsQueryable();
+			RealtorController controller = new RealtorController(queryableList);
 
 			ViewResult result = controller.Index(null) as ViewResult;
 
