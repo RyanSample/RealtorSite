@@ -170,7 +170,20 @@ namespace RealMax.Controllers
             Realtor realtor = _db.Realtor.Find(id);
             _db.Realtor.Remove(realtor);
             _db.SaveChanges();
-            return RedirectToAction("Index");
+
+			try
+			{
+				var directoryPath = Path.Combine("~/Content/Images/Realtor", realtor.ID.ToString());
+				//delete the folder associated with this model.
+				Directory.Delete(Server.MapPath(directoryPath), true);
+			}
+			catch (Exception /*e*/)
+			{
+
+				return View("Error");
+			}
+
+			return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)
