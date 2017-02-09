@@ -133,13 +133,13 @@ namespace RealMax.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public ActionResult Edit([Bind(Include = "ID,FirstName,LastName,Email,PhoneNumber,Bio")] Realtor realtor, HttpPostedFileBase addOrChangePicture)
+        public ActionResult Edit([Bind(Include = "ID,FirstName,LastName,Email,PhoneNumber,Bio")] Realtor realtor, HttpPostedFileBase addOrChangePicture, bool RemovePicture)
         {
 			if (ModelState.IsValid)
 			{
 				_db.Entry(realtor).State = EntityState.Modified;
 				_db.SaveChanges();
-				if(addOrChangePicture.ContentLength > 0)
+				if(addOrChangePicture != null && addOrChangePicture.ContentLength > 0)
 				{
 					//if there is already a picture then we need to remove it and upload the new one as the same name
 					var directoryPath = Path.Combine("~/Content/Images/Realtor", realtor.ID.ToString());
@@ -149,9 +149,8 @@ namespace RealMax.Controllers
 					if (!Directory.Exists(Server.MapPath(directoryPath))){
 						Directory.CreateDirectory(Server.MapPath(directoryPath));
 					}
-					//check for and then delete file
-					if (System.IO.File.Exists(Server.MapPath(filePath)))
-						System.IO.File.Delete(Server.MapPath(filePath));
+					//check for and then delete previous picture using helper
+					removeRealtorPicture(realtor.ID);
 
 					try {
 						addOrChangePicture.SaveAs(Server.MapPath(filePath));
@@ -165,12 +164,26 @@ namespace RealMax.Controllers
 					
 
 				}
+
+				if(RemovePicture == true)
+				{
+					removeRealtorPicture(realtor.ID);
+				}
+
 				return RedirectToAction("Index");
 			}
             return View(realtor);
         }
 
-        public ActionResult Remove()
+		[Authorize(Roles = "Admin")]
+		public ActionResult EditList()
+		{
+			var list = _realtorDbList;
+			return View(list.ToList());
+		}
+
+		[Authorize(Roles = "Admin")]
+		public ActionResult Remove()
         {
             var realtors = from r in _db.Realtor select r;
             return View(realtors.ToList());
@@ -208,10 +221,9 @@ namespace RealMax.Controllers
 				//delete the folder associated with this model.
 				Directory.Delete(Server.MapPath(directoryPath), true);
 			}
-			catch (Exception /*e*/)
+			catch (Exception e)
 			{
-
-				return View("Error");
+				return View("Error", e);
 			}
 
 			return RedirectToAction("Index");
@@ -225,5 +237,15 @@ namespace RealMax.Controllers
             }
             base.Dispose(disposing);
         }
+
+		private void removeRealtorPicture(int id) 
+		{
+			var directoryPath = Path.Combine("~/Content/Images/Realtor", id.ToString());
+			string fileName = "thumbnail.jpg";
+			string filePath = Path.Combine(directoryPath, fileName);
+			//check for and then delete file
+			if (System.IO.File.Exists(Server.MapPath(filePath)))
+				System.IO.File.Delete(Server.MapPath(filePath));
+		}
     }
 }

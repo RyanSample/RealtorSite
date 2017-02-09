@@ -313,6 +313,7 @@
     <Content Include="Views\Listing\ListingIndex.cshtml" />
     <Content Include="Views\Listing\Remove.cshtml" />
     <Content Include="Views\Realtor\Remove.cshtml" />
+    <Content Include="Views\Realtor\EditList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
