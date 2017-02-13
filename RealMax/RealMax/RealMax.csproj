@@ -314,6 +314,7 @@
     <Content Include="Views\Listing\Remove.cshtml" />
     <Content Include="Views\Realtor\Remove.cshtml" />
     <Content Include="Views\Realtor\EditList.cshtml" />
+    <Content Include="Views\Listing\EditList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -132,7 +132,6 @@ namespace RealMax.Controllers
             return View(listing);
         }
 
-        //In the future a realtor may be permitted to create/update/delete listings
         //GET: Listing/Create\
         [Authorize(Roles ="Admin,Realtor")]
         public ActionResult Create()
@@ -232,6 +231,13 @@ namespace RealMax.Controllers
             ViewBag.RealtorID = new SelectList(db.Realtor, "ID", "FirstName", listing.RealtorID);
             return View(listing);
         }
+
+		[Authorize(Roles = "Admin,Realtor")]
+		public ActionResult EditList()
+		{
+			var listings = from l in db.Listing select l;
+			return View(listings.ToList());
+		}
 
         [Authorize(Roles = "Admin,Realtor")]
         public ActionResult Remove()

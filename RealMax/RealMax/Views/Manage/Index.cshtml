@@ -86,7 +86,7 @@
             @if (User.IsInRole("Admin"))
             {
                 <dt>
-                    Add or remove a Realtor
+                    Add, remove, or change a Realtor
                 </dt>
                 <dd>
 					<span>
@@ -94,7 +94,7 @@
 
 						<a href="@Url.Action("Remove","Realtor")" class="btn btn-default">Remove a realtor</a>
 
-						<a href="@Url.Action("Edit", "Realtor")" class="btn btn-default">Edit</a>
+						<a href="@Url.Action("EditList", "Realtor")" class="btn btn-default">Edit a realtor</a>
 					</span>
                 </dd>
 
@@ -102,13 +102,15 @@
             @if(User.IsInRole("Admin") || User.IsInRole("Realtor"))
             {
                 <dt>
-                    Add or remove a Listing
+                    Add, remove, or change a Listing
                 </dt>
                 <dd>
 					<span>
-						<a href="@Url.Action("Create", "Listing")">Add a new Listing</a>
-						<br />
-						<a href="@Url.Action("Remove","Listing")">Remove a Listing</a>
+						<a href="@Url.Action("Create", "Listing")" class="btn btn-default">Add a new Listing</a>
+
+						<a href="@Url.Action("Remove","Listing")" class="btn btn-default">Remove a Listing</a>
+
+						<a href="@Url.Action("EditList", "Listing")" class="btn btn-default">Edit a Listing</a>
 					</span>
 					<span>
 						

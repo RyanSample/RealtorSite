@@ -149,10 +149,11 @@ namespace RealMax.Controllers
 					if (!Directory.Exists(Server.MapPath(directoryPath))){
 						Directory.CreateDirectory(Server.MapPath(directoryPath));
 					}
-					//check for and then delete previous picture using helper
+					//check for and then delete previous picture using helper function
 					removeRealtorPicture(realtor.ID);
 
 					try {
+						//save the picture
 						addOrChangePicture.SaveAs(Server.MapPath(filePath));
 					}
 					catch (Exception /*e*/)
@@ -240,12 +241,19 @@ namespace RealMax.Controllers
 
 		private void removeRealtorPicture(int id) 
 		{
-			var directoryPath = Path.Combine("~/Content/Images/Realtor", id.ToString());
-			string fileName = "thumbnail.jpg";
-			string filePath = Path.Combine(directoryPath, fileName);
-			//check for and then delete file
-			if (System.IO.File.Exists(Server.MapPath(filePath)))
-				System.IO.File.Delete(Server.MapPath(filePath));
+			try
+			{			
+				var directoryPath = Path.Combine("~/Content/Images/Realtor", id.ToString());
+				string fileName = "thumbnail.jpg";
+				string filePath = Path.Combine(directoryPath, fileName);
+				//check for and then delete file
+				if (System.IO.File.Exists(Server.MapPath(filePath)))
+					System.IO.File.Delete(Server.MapPath(filePath));
+				}
+			catch (Exception)
+			{
+				
+			}
 		}
     }
 }
