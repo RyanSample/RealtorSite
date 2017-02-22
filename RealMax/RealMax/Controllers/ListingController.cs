@@ -220,12 +220,61 @@ namespace RealMax.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin,Realtor")]
-        public ActionResult Edit([Bind(Include = "ListID,HouseNumber,StreetName,ApartmentNumber,City,State,ZipCode,Price,Bed,Bath,RealtorID,ExtraFeatures,SquareFeet,LotSize")] Listing listing)
+        public ActionResult Edit([Bind(Include = "ListID,HouseNumber,StreetName,ApartmentNumber,City,State,ZipCode,Price,Bed,Bath,RealtorID,ExtraFeatures,SquareFeet,LotSize")] Listing listing, HttpPostedFileBase changeThumbnail, IEnumerable<HttpPostedFileBase> addPicture)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(listing).State = EntityState.Modified;
-                db.SaveChanges();
+                db.SaveChanges();	
+				var directoryPath = Path.Combine("~/Content/Images/Listing", listing.ListID.ToString());
+				string thumbnailFileName = "thumbnail.jpg";
+				string thumbnailFilePath = Path.Combine(directoryPath, thumbnailFileName);
+				if (changeThumbnail != null)
+				{
+					/* check for file 
+					 * if it exists delete file
+					 * call save Picture
+					 */
+					if (System.IO.File.Exists(Server.MapPath(thumbnailFilePath)))
+						System.IO.File.Delete(Server.MapPath(thumbnailFilePath));
+				
+
+					SavePicture(changeThumbnail, thumbnailFilePath);
+				}
+
+				if(addPicture != null)
+				{
+
+					foreach(var picture in addPicture)
+					{
+						string filepath = Path.Combine(directoryPath, Path.GetFileName(picture.FileName));
+						int counter = 1;
+						while (true) {
+							
+							if (System.IO.File.Exists(Server.MapPath(filepath)))
+							{
+								//picture name + number + file extension to new variable filename
+								//Path.Combine(directoryPath , *newvariable* )
+								string pictureExtension = Path.GetExtension(picture.FileName);
+								string pictureBaseName = Path.GetFileNameWithoutExtension(picture.FileName);
+
+								string newPictureFileName = pictureBaseName + counter.ToString() + pictureExtension;
+
+								filepath = Path.Combine(directoryPath, newPictureFileName);
+							}
+							else
+							{
+								//filename not taken
+								break;
+							}
+							counter++;
+						}
+						//savepicture
+						SavePicture(picture, filepath);
+					}
+
+				}
+
                 return RedirectToAction("Index");
             }
             ViewBag.RealtorID = new SelectList(db.Realtor, "ID", "FirstName", listing.RealtorID);
@@ -285,6 +334,17 @@ namespace RealMax.Controllers
 			}
 			return RedirectToAction("Index");
         }
+
+		private void SavePicture(HttpPostedFileBase picture, string filePath)
+		{
+			try {
+				picture.SaveAs(Server.MapPath(filePath));
+			}
+			catch (Exception)
+			{
+				//DoSomething
+			}
+		}
 
         protected override void Dispose(bool disposing)
         {

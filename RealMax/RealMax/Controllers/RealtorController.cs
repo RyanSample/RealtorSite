@@ -43,6 +43,7 @@ namespace RealMax.Controllers
         // GET: Realtor/Details/5
         public ActionResult Details(int? id)
         {
+			//var realtorTest = _realtorDbList.Where(r => r.ID.Equals(id)); 
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
