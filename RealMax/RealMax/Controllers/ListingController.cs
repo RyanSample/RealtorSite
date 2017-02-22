@@ -257,7 +257,6 @@ namespace RealMax.Controllers
 								//Path.Combine(directoryPath , *newvariable* )
 								string pictureExtension = Path.GetExtension(picture.FileName);
 								string pictureBaseName = Path.GetFileNameWithoutExtension(picture.FileName);
-
 								string newPictureFileName = pictureBaseName + counter.ToString() + pictureExtension;
 
 								filepath = Path.Combine(directoryPath, newPictureFileName);
