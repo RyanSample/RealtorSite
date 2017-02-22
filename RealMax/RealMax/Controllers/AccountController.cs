@@ -189,10 +189,10 @@ namespace RealMax.Controllers
 						// await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 						//
 
-						var listOfUsers = UserManager.Users;
-						var arrayOfUsers = listOfUsers.ToArray();
+						var listOfUsers = UserManager.Users.ToArray();
+						int numberOfRegisteredUsers = listOfUsers.Length;
 
-						if(arrayOfUsers.Length == 0)
+						if(numberOfRegisteredUsers == 0)
 						{
 							UserManager.AddToRole(user.Id, "Admin");
 						}
