@@ -1,6 +1,10 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+	background-image: url(Images/background_picture.jpg);
+	background-size: cover;
+	color: #F7F5E6;
+
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -22,3 +26,5 @@ select,
 textarea {
     max-width: 280px;
 }
+
+
