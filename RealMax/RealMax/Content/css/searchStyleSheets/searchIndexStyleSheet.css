@@ -9,6 +9,8 @@
     width: 100%;
     height: 100%;
     padding: 0px;
+	color: #F7F5E6;
+	background: rgba(205,205,205,0.3);
 }
 
 .noBorder{
@@ -38,4 +40,13 @@ a:hover{
 .listing-item{
     /*height: 400px;*/
     padding: 0px;
+
+}
+
+.text-center{
+	color: #F7F5E6;
+}
+
+.text-tan{
+	color: #F7F5E6;
 }
